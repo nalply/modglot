@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+
+# This script only works in the directory it is in
+cd "$(dirname "$0")"
+
+ROOT=$(realpath ..)
+echo Server root: $ROOT
+python -m http.server -d "$ROOT"

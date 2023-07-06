@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+  <meta charset=utf-8>
+  <link rel=icon
+    href=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxjaXJjbGUgY3g9IjQiIGN5PSI0IiByPSI0IiBmaWxsPSIjZGZlIi8+PHRleHQgeT0iNiIgZm9udC1zaXplPSI2IiB4PSIxIj7wn6eqPC90ZXh0Pjwvc3ZnPg==>
+  <title>modglot tests</title>
+  <script src=../modglot.js></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      document.body.innerText += `
+${navigator.userAgent}
+
+=== Browser Legacy Script Test ===
+
+This is a legacy script running in a script element.
+Before that a different legacy script element loads
+modglot.js with the attribute src=../modglot.js.
+
+Tests:
+
+1. window.modglot.hasAwait: ${window.modglot.hasAwait}
+   expected: true for browsers supporting async/await
+   (for Firefox and Chrome after version 51)
+
+2. window.modglot.kind: '${window.modglot.kind}'
+   expected: 'browser-legacy'
+
+`
+    })
+  </script>
+  <script type=module>
+    import modglot from "../modglot.js"
+
+    window.addEventListener("DOMContentLoaded", () => {
+      document.body.innerText += `
+=== Browser EcmaScript Module Test ===
+
+This is a module script with type=module. This script does:
+
+import modglot from "../modglot.js"
+
+Tests:
+
+1. modglot.hasAwait: ${modglot.hasAwait}
+   expected: true
+
+2. modglot.kind: '${modglot.kind}'
+   expected: 'esm'
+
+`
+    })
+  </script>
+  <script nomodule>
+    window.addEventListener("DOMContentLoaded", () => {
+      document.body.innerText += `
+=== Browser EcmaScript Module Test ===
+
+This test is not available because this browser doesn't
+support EcmaScript Modules. Firefox and Chrome for
+example support them after about version 59.
+
+`
+    })
+  </script>
+  <style>
+    body {
+      font: 12px monospace;
+      white-space: break-spaces;
+  </style>
+</head>
+
+<body></body>
+
+</html>

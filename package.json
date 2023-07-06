@@ -1,0 +1,12 @@
+{
+  "name": "modglot",
+  "repository": ".",
+  "version": "0.0.1",
+  "description": "example to be a module polyglot (esm, umd, browser)",
+  "main": "modglot.js",
+  "exports": {
+    ".": "modglot.js"
+  },
+  "author": "nkoq",
+  "license": "ISC"
+}
